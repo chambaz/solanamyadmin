@@ -51,7 +51,6 @@ export interface AccountListProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   accountType: string | null;
-  totalItems: number;
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
@@ -77,7 +76,6 @@ export function AccountList({
   searchQuery,
   onSearchChange,
   accountType,
-  totalItems,
   currentPage,
   totalPages,
   onPageChange,
@@ -396,19 +394,12 @@ export function AccountList({
       <div className="flex-1 overflow-y-auto">
         <div className="p-4">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold flex items-center gap-2">
-              {searchQuery ? (
-                "Search Results"
-              ) : selectedViewId ? (
-                selectedViewName || "View"
-              ) : (
-                <>
-                  {accountType || "Select Type"}
-                  <span className="text-muted-foreground ml-1 text-sm font-normal">
-                    ({totalItems})
-                  </span>
-                </>
-              )}
+            <h2 className="text-lg font-semibold">
+              {searchQuery
+                ? "Search Results"
+                : selectedViewId
+                  ? selectedViewName || "View"
+                  : accountType || "Select Type"}
             </h2>
           </div>
 

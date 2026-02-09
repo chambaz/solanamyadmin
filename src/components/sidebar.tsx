@@ -10,6 +10,7 @@ import { View } from "@/types";
 
 interface SidebarProps {
   accountTypes: string[];
+  accountCounts?: Record<string, number>;
   selectedAccountType: string | null;
   onSelectAccountType: (type: string) => void;
   loading?: boolean;
@@ -20,6 +21,7 @@ interface SidebarProps {
 
 export function Sidebar({
   accountTypes,
+  accountCounts,
   selectedAccountType,
   onSelectAccountType,
   loading = false,
@@ -32,6 +34,11 @@ export function Sidebar({
   // Separate default and user views
   const defaultViews = views.filter((v) => v.isDefault);
   const userViews = views.filter((v) => !v.isDefault);
+
+  // Filter out account types with 0 accounts (only when counts are loaded)
+  const visibleAccountTypes = accountCounts
+    ? accountTypes.filter((type) => (accountCounts[type] ?? 0) > 0)
+    : accountTypes;
 
   const handleViewClick = (viewId: string) => {
     if (onSelectView) {
@@ -160,7 +167,7 @@ export function Sidebar({
                 ))}
               </>
             ) : (
-              accountTypes.map((type) => (
+              visibleAccountTypes.map((type) => (
                 <button
                   key={type}
                   onClick={() => onSelectAccountType(type)}

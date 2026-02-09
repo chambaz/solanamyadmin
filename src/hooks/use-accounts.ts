@@ -13,7 +13,6 @@ interface UseAccountsResult {
   accounts: AccountResult[];
   loading: boolean;
   error: string | null;
-  totalCount: number;
   refetch: () => Promise<void>;
   isSearching: boolean;
 }
@@ -188,7 +187,6 @@ export function useAccounts(
     accounts,
     loading,
     error,
-    totalCount: accounts.length,
     refetch: fetchAccounts,
     isSearching,
   };

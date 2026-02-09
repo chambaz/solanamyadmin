@@ -12,6 +12,7 @@ import { useLabels } from "@/hooks/use-labels";
 import { useFavorites } from "@/hooks/use-favorites";
 import { useViews } from "@/hooks/use-views";
 import { useAccounts } from "@/hooks/use-accounts";
+import { useAccountCounts } from "@/hooks/use-account-counts";
 import { useAccountData } from "@/hooks/use-account-data";
 import { View } from "@/types";
 
@@ -32,12 +33,12 @@ function ExplorerContent() {
   const { getLabel, isLabelDefault, setLabel, loading: labelsLoading } = useLabels(programId);
   const { isFavorite, toggleFavorite, loading: favoritesLoading } = useFavorites(programId);
   const { views, createView, updateView, loading: viewsLoading, refetch: refetchViews } = useViews(programId);
+  const { counts: accountCounts, loading: countsLoading } = useAccountCounts(programId);
   
   // Pass search query to useAccounts for integrated search (returns full unpaginated list)
   const { 
     accounts: fetchedAccounts,
     loading: accountsLoading, 
-    totalCount, 
     isSearching,
   } = useAccounts(programId, selectedAccountType, searchQuery);
   
@@ -203,7 +204,7 @@ function ExplorerContent() {
   }, []);
 
   // Loading state
-  const isLoading = labelsLoading || favoritesLoading || viewsLoading;
+  const isLoading = labelsLoading || favoritesLoading || viewsLoading || countsLoading;
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -224,6 +225,7 @@ function ExplorerContent() {
         {/* Sidebar */}
         <Sidebar
           accountTypes={accountTypes}
+          accountCounts={accountCounts}
           selectedAccountType={selectedAccountType}
           onSelectAccountType={handleSelectAccountType}
           loading={isLoading}
@@ -241,9 +243,8 @@ function ExplorerContent() {
           searchQuery={searchQuery}
           onSearchChange={handleSearchChange}
           accountType={selectedAccountType}
-          totalItems={isSearching || selectedViewId ? sortedAccounts.length : totalCount}
           currentPage={currentPage}
-          totalPages={isSearching || selectedViewId ? Math.ceil(sortedAccounts.length / ITEMS_PER_PAGE) || 1 : totalPages}
+          totalPages={totalPages}
           onPageChange={handlePageChange}
           onToggleFavorite={handleToggleFavorite}
           onSaveLabel={handleSaveLabel}
