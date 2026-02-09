@@ -25,7 +25,7 @@ import {
   GitCompare,
 } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
-import { AccountHistoryEntry } from "@/hooks/use-account-data";
+import { AccountHistoryEntry, DecodedAccountData } from "@/hooks/use-account-data";
 
 // Define custom data type for Enriched Pubkeys (tokens and labeled)
 const enrichedPubkeyDataType = defineDataType({
@@ -48,6 +48,7 @@ interface DataPreviewProps {
   idl?: Idl;
   history?: AccountHistoryEntry[];
   historyLoading?: boolean;
+  decodeHistoricData?: (entry: AccountHistoryEntry) => DecodedAccountData | null;
 }
 
 export function DataPreview({
@@ -58,6 +59,7 @@ export function DataPreview({
   idl,
   history = [],
   historyLoading = false,
+  decodeHistoricData,
 }: DataPreviewProps) {
   const [viewMode, setViewMode] = useState<"tree" | "raw">("tree");
   const { resolvedTheme } = useTheme();
@@ -114,24 +116,26 @@ export function DataPreview({
   // Handle viewing historic data directly in the preview panel
   const handleViewHistoricData = useCallback(
     (entry: AccountHistoryEntry) => {
-      if (!idl || !accountType) return;
+      if (!decodeHistoricData) return;
 
       try {
-        const dataBuffer = Buffer.from(entry.data, "base64");
-        const coder = new BorshAccountsCoder(idl);
-        const decoded = coder.decode(accountType, dataBuffer);
-        const formatted = parseData(decoded);
+        const decoded = decodeHistoricData(entry);
+        if (!decoded) {
+          console.error("Failed to decode historic data");
+          return;
+        }
 
         const dateLabel = format(
           new Date(entry.createdAt),
           "MMM d, yyyy HH:mm",
         );
-        setHistoricViewData({ data: formatted, label: dateLabel });
+        // Use enriched data which includes token/label info
+        setHistoricViewData({ data: decoded.enriched, label: dateLabel });
       } catch (e) {
         console.error("Error decoding historic data:", e);
       }
     },
-    [idl, accountType],
+    [decodeHistoricData],
   );
 
   // Exit historic view mode

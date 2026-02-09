@@ -46,7 +46,8 @@ function ExplorerContent() {
     history, 
     loading: accountDataLoading,
     historyLoading,
-    detectedType
+    detectedType,
+    decodeHistoricData
   } = useAccountData(
     programId, 
     selectedPubkey, 
@@ -265,6 +266,7 @@ function ExplorerContent() {
           idl={idl}
           history={history}
           historyLoading={historyLoading}
+          decodeHistoricData={decodeHistoricData}
         />
       </div>
     </div>
