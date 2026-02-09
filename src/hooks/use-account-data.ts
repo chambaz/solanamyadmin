@@ -54,6 +54,8 @@ interface UseAccountDataResult {
   decodeHistoricData: (entry: AccountHistoryEntry) => DecodedAccountData | null;
   // Enrichment map for labels
   enrichmentMap: Map<string, EnrichedPubkey>;
+  // Auto-detected account type (when not provided via accountType param)
+  detectedType: string | null;
 }
 
 /**
@@ -265,5 +267,6 @@ export function useAccountData(
     refetch: fetchAccountData,
     decodeHistoricData,
     enrichmentMap,
+    detectedType,
   };
 }

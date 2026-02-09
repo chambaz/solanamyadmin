@@ -6,6 +6,9 @@ const TOKEN_PROGRAM_ID = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
 const TOKEN_2022_PROGRAM_ID = "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb";
 const BASE58_REGEX = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 
+// Supabase storage URL for token icons
+const SUPABASE_TOKEN_ICON_URL = "https://xcdlwgvabmruuularsvn.supabase.co/storage/v1/object/public/p0-tokens";
+
 export interface EnrichedPubkey {
   __isEnriched: true;
   pubkey: string;
@@ -215,7 +218,7 @@ export async function fetchEnrichmentMap(
                 mintInfoMap.set(mint, {
                   symbol: meta.symbol || "Unknown",
                   decimals: meta.decimals || 0,
-                  logoURI: meta.logo_uri || meta.logoURI,
+                  logoURI: `${SUPABASE_TOKEN_ICON_URL}/${mint}.png`,
                   name: meta.name,
                 });
               }
@@ -231,7 +234,7 @@ export async function fetchEnrichmentMap(
     for (const ta of tokenAccounts) {
       let info = mintInfoMap.get(ta.mint);
       if (!info) {
-        info = { symbol: "Unknown", decimals: 0, logoURI: undefined };
+        info = { symbol: "Unknown", decimals: 0, logoURI: `${SUPABASE_TOKEN_ICON_URL}/${ta.mint}.png` };
       }
 
       const amountStr = formatAmount(ta.amount, info.decimals);
@@ -270,7 +273,7 @@ export async function fetchEnrichmentMap(
     for (const mintPubkey of mintAccounts) {
       let info = mintInfoMap.get(mintPubkey);
       if (!info) {
-        info = { symbol: "Unknown", decimals: 0, logoURI: undefined };
+        info = { symbol: "Unknown", decimals: 0, logoURI: `${SUPABASE_TOKEN_ICON_URL}/${mintPubkey}.png` };
       }
 
       const label = getLabel ? getLabel(mintPubkey) : undefined;

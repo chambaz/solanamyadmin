@@ -45,7 +45,8 @@ function ExplorerContent() {
     data: accountData, 
     history, 
     loading: accountDataLoading,
-    historyLoading 
+    historyLoading,
+    detectedType
   } = useAccountData(
     programId, 
     selectedPubkey, 
@@ -53,6 +54,9 @@ function ExplorerContent() {
     idl,
     getLabel
   );
+
+  // Use detected type as fallback when accountType is not set (e.g., when viewing from views)
+  const effectiveAccountType = selectedAccountType || detectedType;
 
   // Get the selected view object
   const selectedView = useMemo(() => {
@@ -257,7 +261,7 @@ function ExplorerContent() {
           decodedData={accountData?.enriched}
           loading={accountDataLoading}
           pubkey={selectedPubkey || undefined}
-          accountType={selectedAccountType || undefined}
+          accountType={effectiveAccountType || undefined}
           idl={idl}
           history={history}
           historyLoading={historyLoading}
