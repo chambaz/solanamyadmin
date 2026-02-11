@@ -10,7 +10,7 @@ const ALLOWED_DOMAINS = ["mrgn.group", "0.xyz"];
 /**
  * Specific emails allowed as exceptions to domain restriction
  */
-const ALLOWED_EMAILS = ["REDACTED_EMAIL_1"];
+const ALLOWED_EMAILS = ["REDACTED_EMAIL_1", "REDACTED_EMAIL_2"];
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
