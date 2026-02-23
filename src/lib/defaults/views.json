@@ -164,5 +164,17 @@
         "GZK3yC3Kfn1ykFhLryzeKqemRNZ3wpZgWhbh5b5ygGML"
       ]
     }
+  ],
+  "marginfi-staging": [
+    {
+      "name": "Jupiter Banks",
+      "accounts": [
+        "EC1T1SWsT81MdrGWdrwesDs1vApJNtjDXibcBX4GFsEH",
+        "2mPDpFXRDXguzz29rhSsnAUd23ZU5MzqYXyU5dvLLx9q",
+        "C8xW2QAizzCaxAacAEHxnQUa3rXnRdTHXuTRNwHjTi8e",
+        "ErdhJmhLRxwTG2uJVw5f22j7aTDtMkVefZ3iPWN6Knkq",
+        "GBFxM5tS6q32pk5NhWjMwyrfzNEzFFmXVf3L9995RNt8"
+      ]
+    }
   ]
 }

@@ -211,5 +211,12 @@
     "HmWbjPzNfZjyPWkXgL5FgKwWvawvYZavyPWagSjX6r3k": { "label": "PT-BulkSOL Bank Metadata" },
     "9oxzHNVCi62htrDgo3TUqR62rqfFYaAzjCwqzC5wfrvq": { "label": "PYUSD - Kamino JLP Market Metadata" },
     "89QGxat5DJ5AiNNJrifpb6FVwDWQ8WHcohnuCjRfhYym": { "label": "STKESOL Bank Metadata" }
+  },
+  "marginfi-staging": {
+    "EC1T1SWsT81MdrGWdrwesDs1vApJNtjDXibcBX4GFsEH": { "label": "WSOL Jupiter" },
+    "2mPDpFXRDXguzz29rhSsnAUd23ZU5MzqYXyU5dvLLx9q": { "label": "USDC Jupiter" },
+    "C8xW2QAizzCaxAacAEHxnQUa3rXnRdTHXuTRNwHjTi8e": { "label": "USDT Jupiter" },
+    "ErdhJmhLRxwTG2uJVw5f22j7aTDtMkVefZ3iPWN6Knkq": { "label": "USDG Jupiter" },
+    "GBFxM5tS6q32pk5NhWjMwyrfzNEzFFmXVf3L9995RNt8": { "label": "USDS Jupiter" }
   }
 }
