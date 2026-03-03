@@ -99,75 +99,7 @@ export default function HomePage() {
             </div>
 
             {/* App Preview Content - 3 Column Layout Skeleton */}
-            <div className="flex h-[400px] bg-background">
-              {/* Sidebar */}
-              <div className="w-56 border-r border-border p-4 space-y-4">
-                <div className="h-4 w-24 bg-muted rounded animate-pulse" />
-                <div className="h-4 w-32 bg-muted rounded animate-pulse" />
-                <div className="space-y-2 mt-6">
-                  <div className="h-3 w-20 bg-muted/60 rounded animate-pulse" />
-                  <div className="h-8 w-full bg-muted rounded animate-pulse" />
-                  <div className="h-8 w-full bg-muted/70 rounded animate-pulse" />
-                  <div className="h-8 w-full bg-muted/70 rounded animate-pulse" />
-                </div>
-                <div className="space-y-2 mt-6">
-                  <div className="h-3 w-24 bg-muted/60 rounded animate-pulse" />
-                  <div className="h-8 w-full bg-muted/70 rounded animate-pulse" />
-                  <div className="h-8 w-full bg-muted/70 rounded animate-pulse" />
-                  <div className="h-8 w-full bg-muted/70 rounded animate-pulse" />
-                  <div className="h-8 w-full bg-muted/70 rounded animate-pulse" />
-                </div>
-              </div>
-
-              {/* Account List */}
-              <div className="w-80 border-r border-border p-4 space-y-3">
-                <div className="h-5 w-40 bg-muted rounded animate-pulse" />
-                <div className="h-9 w-full bg-muted/50 rounded animate-pulse" />
-                <div className="space-y-2 mt-4">
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-12 w-full bg-muted/60 rounded animate-pulse"
-                      style={{ opacity: 1 - i * 0.08 }}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Data Preview */}
-              <div className="flex-1 p-4 space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="h-5 w-48 bg-muted rounded animate-pulse" />
-                  <div className="h-8 w-24 bg-muted rounded animate-pulse" />
-                </div>
-                <div className="space-y-3 mt-6">
-                  {[...Array(6)].map((_, i) => (
-                    <div key={i} className="flex gap-4">
-                      <div
-                        className="h-4 w-32 bg-muted/60 rounded animate-pulse"
-                        style={{ opacity: 1 - i * 0.1 }}
-                      />
-                      <div
-                        className="h-4 flex-1 bg-muted/40 rounded animate-pulse"
-                        style={{ opacity: 1 - i * 0.1 }}
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-8 p-4 border border-border rounded-lg">
-                  <div className="h-4 w-24 bg-muted/60 rounded animate-pulse mb-3" />
-                  <div className="space-y-2">
-                    {[...Array(4)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="h-3 w-full bg-muted/30 rounded animate-pulse"
-                        style={{ opacity: 1 - i * 0.15 }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div className="flex h-[400px] bg-background"></div>
           </div>
         </div>
       </main>
